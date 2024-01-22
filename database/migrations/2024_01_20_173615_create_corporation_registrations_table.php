@@ -11,7 +11,8 @@ return new class extends Migration
     {
         Schema::create('corporation_registrations', function (Blueprint $table) {
             $table->id();
-            $table->foreign('profile_id')->references('id')->on('profile_registration'); //pegando o id do perfil com chave estrangeira
+            $table->unsignedBigInteger('profile_registrations_id');
+            $table->foreign('profile_registrations_id')->references('id')->on('profile_registrations')->onDelete('cascade'); //pegando o id do perfil com chave estrangeira
             $table->enum('office', ['boss','employee'])->default('employee');
             $table->enum('function', ['manage_business','consult_client'])->default('consult_client');
             $table->String('type_of_technology');
