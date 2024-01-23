@@ -26,6 +26,6 @@ class RegisterCorporationController extends Controller
     {
         $corporation = $this->CorporationService->createCorporation($request->all());
 
-        return response()->json(['mensagem' => 'Cadastro realizado com sucesso.']);
+        return response()->json(['mensagem' => 'Empresa cadastrada com sucesso.']);
     }
 }

@@ -3,32 +3,18 @@
 namespace App\Services;
 
 use App\Models\profileRegistration;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
 
 class ProfileService
 {
-    public function register(array $data): profileRegistration
+
+    public function getAllProfiles(): Collection //método para resgatar uma coleção de perfis
     {
-        $register_validate = $this->validateData($data); //método de validação de dados.
-
-        $profile_registration = new profileRegistration($register_validate); //Aqui eu crio uma variavel para resgatar dados da model.
-
-        $profile_registration->save(); //Aqui eu salvo no banco de dados.
-
-        return $profile_registration; //Retornando o método
+        return profileRegistration::all();
     }
 
-    private function validateData(array $data, Request $request): array
+    public function createProfiles(array $data): profileRegistration //método para inserção de dados no data base
     {
-        $data = $request->all();
-        $post = profileRegistration::create([
-            'name' => $data['name'],
-            'surname' => $data['surname'],
-            'email' => $data['email'],
-            'country' => $data['country'],
-            'city' => $data['city'],
-        ]);
-
-        return $data;
+        return profileRegistration::create($data);
     }
 }

@@ -14,9 +14,6 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\corporationRegistration::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        \App\Models\ProfileRegistration::factory(10)->create();
     }
 }

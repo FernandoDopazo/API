@@ -3,32 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\RegisterProfileResource;
-use App\Models\profileRegistration;
 use App\Services\ProfileService;
-use Illuminate\Http\Request;
+use App\Http\Requests\ProfileFormRequest;
 
 class RegisterProfileController extends Controller
 {
-    private $ProfileService;
+    protected $ProfileService;
 
     public function __construct(ProfileService $profileService)
     {
         $this->ProfileService = $profileService;
     }
 
-    public function store(Request $request)
+    public function index()
     {
-        $data = $request->all();
+        $profile = $this->ProfileService->getAllProfiles();
 
-        $register = $this->ProfileService->register($data);
-
-        return response()->json(['mensagem' => 'Cadastro realizado com sucesso', '$data' => $register]);
+        return RegisterProfileResource::collection($profile);
     }
 
-    public function show($id)
+    public function store(ProfileFormRequest $request)
     {
-        $profile_registration = profileRegistration::findOrFail($id);
+        $profile = $this->ProfileService->createProfiles($request->all());
 
-        return new RegisterProfileResource($profile_registration);
+        return response()->json(['mensagem' => 'Perfil cadastrado com sucesso.']);
     }
+
 }
