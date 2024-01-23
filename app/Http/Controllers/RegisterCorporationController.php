@@ -2,34 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Services\CorporationService;
+use App\Http\Requests\CorporationFormRequest;
 use App\Http\Resources\RegisterCorporationResource;
-use App\Models\corporationRegistration;
-class RegisterCorportionController extends Controller
+use App\Services\CorporationService;
+
+class RegisterCorporationController extends Controller
 {
     protected $CorporationService;
 
-    public function __construct(corporationRegistration $CorporationService)
+    public function __construct(CorporationService $CorporationService)
     {
         $this->CorporationService = $CorporationService;
     }
 
-    public function store(Request $request)
+    public function index()
     {
-        $data = $request->all();
+        $corporation = $this->CorporationService->getAllCorporative();
 
-        $register = $this->CorporationService->register($data);
-
-        return response()->json(['mensagem'=>'Cadastro realizado com sucesso','$data'=>$register]);
+        return RegisterCorporationResource::collection($corporation);
     }
 
-    public function show($id)
+    public function store(CorporationFormRequest $request)
     {
-        $corporation_registration = corporationRegistration::findOrFail($id);
+        $corporation = $this->CorporationService->createCorporation($request->all());
 
-        return new RegisterCorporationResource($corporation_registration);
+        return response()->json(['mensagem' => 'Cadastro realizado com sucesso.']);
     }
 }
-
-

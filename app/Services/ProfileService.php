@@ -18,17 +18,17 @@ class ProfileService
         return $profile_registration; //Retornando o método
     }
 
-    private function validateData(array $data, Request $request):array
+    private function validateData(array $data, Request $request): array
     {
         $data = $request->all();
         $post = profileRegistration::create([
-            'name'=>$data['name'],
-            'surname'=>$data['surname'],
-            'email'=>$data['email'],
-            'country'=>$data['country'],
-            'city'=>$data['city'],
+            'name' => $data['name'],
+            'surname' => $data['surname'],
+            'email' => $data['email'],
+            'country' => $data['country'],
+            'city' => $data['city'],
         ]);
 
-        return ($data);
+        return $data;
     }
 }

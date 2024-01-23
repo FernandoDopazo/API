@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Services\ProfileService;
 use App\Http\Resources\RegisterProfileResource;
 use App\Models\profileRegistration;
+use App\Services\ProfileService;
+use Illuminate\Http\Request;
 
 class RegisterProfileController extends Controller
 {
@@ -22,7 +22,7 @@ class RegisterProfileController extends Controller
 
         $register = $this->ProfileService->register($data);
 
-        return response()->json(['mensagem'=>'Cadastro realizado com sucesso','$data'=>$register]);
+        return response()->json(['mensagem' => 'Cadastro realizado com sucesso', '$data' => $register]);
     }
 
     public function show($id)

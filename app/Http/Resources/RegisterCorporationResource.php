@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class RegisterCorporationResource extends JsonResource
-{    public function toArray(Request $request): array
+{
+    public function toArray(Request $request): array
     {
         return [
             'profile_registrations_id' => $this->profile_registrations_id,
