@@ -4,12 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CorporationFormRequest extends FormRequest
+class ProfileUpdateRequest extends FormRequest
 {
-    
+    /**
+     * Determine if the user is authorized to make this request.
+     */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -20,13 +22,7 @@ class CorporationFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'profile_registrations_id' => 'required',
-            'office' => 'required',
-            'function' => 'required',
-            'type_of_technology' => 'required|string|max:255',
-            'company' => 'required|string|max:255',
-            'modality' => 'required',
-            'wage' => 'required',
+            //
         ];
     }
 }

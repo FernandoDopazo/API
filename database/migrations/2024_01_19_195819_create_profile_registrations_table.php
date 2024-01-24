@@ -16,6 +16,7 @@ return new class extends Migration
             $table->String('email');
             $table->String('country');
             $table->String('city');
+            $table->String('password')->nullable();
             $table->timestamps();
         });
     }
