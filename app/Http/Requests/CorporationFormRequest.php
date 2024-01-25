@@ -20,7 +20,6 @@ class CorporationFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'profile_registrations_id' => 'required',
             'office' => 'required',
             'function' => 'required',
             'type_of_technology' => 'required|string|max:255',

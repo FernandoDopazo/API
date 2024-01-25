@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\CorporationFormRequest;
-use Symfony\Component\HttpFoundation\Request;
 use App\Http\Requests\CorporationUpdateRequest;
 use App\Http\Resources\RegisterCorporationResource;
 use App\Services\CorporationService;
@@ -25,19 +25,21 @@ class RegisterCorporationController extends Controller
     }
 
     public function store(CorporationFormRequest $request)
-    {
-        dd($request);
-        $data = $request->all();
-        $corporation = $this->corporationService->createCorporation($data);
-
-        return new RegisterCorporationResource($corporation);
+    { 
+       $data = $request->all();
+       $corporation = $this->corporationService->createCorporation($data);
+       return (new RegisterCorporationResource($corporation))
+       ->response()
+       ->setStatusCode(201);
     }
 
-    public function update($id, CorporationUpdateRequest $request)
+    public function update($id, Request $request)
     {
+        //dd($id);
         $data = $request->all(); 
+        //dd($data);
         $corporation = $this->corporationService->updateCorporation($id, $data);
-
+        //dd($corporation); ESSE CORPORATION QUE TA ENCRENCANDO !!!
         if ($corporation) {
             return response()->json(['mensagem' => 'Empresa atualizada com sucesso.']);
         } else {

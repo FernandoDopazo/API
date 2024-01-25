@@ -10,7 +10,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('profile_registrations', function (Blueprint $table) {
-            $table->id();
+            $table->id('id');
             $table->String('name');
             $table->String('surname');
             $table->String('email');

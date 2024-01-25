@@ -14,20 +14,16 @@ class CorporationService
 
     public function createCorporation(array $data): CorporationRegistration
     {
-        dd($data);
-         return CorporationRegistration::create($data);
+
+        return CorporationRegistration::create($data);
     }
 
-    public function updateCorporation($id, array $data): ?CorporationRegistration
+    public function updateCorporation($id, array $data): CorporationRegistration
     {
-        $corporation = CorporationRegistration::find($id);
+        $corporation = CorporationRegistration::find($id,$data);
+        $corporation->update($data);
 
-        if ($corporation) {
-            $corporation->update($data);
-            return $corporation;
-        }
-
-        return null; // Or you can throw an exception if the record is not found.
+        return $corporation;
     }
 
     public function getCorporationById($id): ?CorporationRegistration

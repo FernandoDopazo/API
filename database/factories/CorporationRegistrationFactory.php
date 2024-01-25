@@ -17,7 +17,7 @@ class CorporationRegistrationFactory extends Factory
     public function definition(): array
     {
         return [
-            //'profile_registrations_id' => \App\Models\ProfileRegistration::factory(),
+            'id' => $this->faker->uuid,
             'office' => $this->faker->randomElement(['boss', 'employee']),
             'function' => $this->faker->randomElement(['manage_business', 'consult_client']),
             'type_of_technology' => $this->faker->word,

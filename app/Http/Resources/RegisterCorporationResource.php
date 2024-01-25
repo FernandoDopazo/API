@@ -10,7 +10,7 @@ class RegisterCorporationResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'profile_registrations_id' => $this->profile_registrations_id,
+            'id' => $this->id,
             'office' => $this->office,
             'function' => $this->function,
             'type_of_technology' => $this->type_of_technology,
